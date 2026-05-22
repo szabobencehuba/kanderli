@@ -10,7 +10,7 @@ COPY bot ./bot
 
 FROM python:3.14.5-alpine
 
-RUN apk add --no-cache ffmpeg
+RUN apk add --no-cache ffmpeg opus
 WORKDIR /app
 COPY --from=builder /app/.venv ./.venv
 COPY --from=builder /app/bot ./bot
