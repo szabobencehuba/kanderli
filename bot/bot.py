@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import os
+import sys
 from pathlib import Path
 
 import discord
@@ -17,6 +18,11 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.voice_states = True
 
+if sys.platform != "win32" and not discord.opus.is_loaded():
+    try:
+        discord.opus.load_opus("libopus.so.0")
+    except OSError:
+        logging.warning("Could not load libopus; voice playback will not work.")
 
 class KanderliBot(commands.Bot):
     def __init__(self) -> None:
