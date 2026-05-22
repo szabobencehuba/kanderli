@@ -1,0 +1,15 @@
+services:
+  discord-music-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: local/discord-music-bot:custom
+    pull_policy: never
+    restart: unless-stopped
+    networks:
+      - discord-bot-net
+    env_file:
+      - .env
+networks:
+  discord-bot-net:
+    driver: bridge
