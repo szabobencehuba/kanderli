@@ -2,9 +2,9 @@ FROM python:3.14.5-alpine AS builder
 
 COPY --from=ghcr.io/astral-sh/uv:0.7.0 /uv /usr/local/bin/uv
 
-RUN apk add --no-cache git
 WORKDIR /app
-RUN git clone --depth 1 https://github.com/szabobencehuba/kanderli.git .
+COPY pyproject.toml uv.lock ./
+COPY bot ./bot
 
 RUN uv sync --frozen --no-dev
 
