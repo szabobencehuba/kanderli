@@ -8,6 +8,7 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "yt-dlp>=2026.3.17",
     "pynacl>=1.6.2",
+    "davey>=0.1.5",
 ]
 
 [dependency-groups]
