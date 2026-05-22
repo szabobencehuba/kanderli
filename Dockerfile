@@ -4,9 +4,8 @@ COPY --from=ghcr.io/astral-sh/uv:0.7.0 /uv /usr/local/bin/uv
 
 WORKDIR /app
 COPY pyproject.toml uv.lock ./
-COPY bot ./bot
-
 RUN uv sync --frozen --no-dev
+COPY bot ./bot
 
 
 FROM python:3.14.5-alpine
@@ -21,4 +20,4 @@ USER botuser
 
 ENV PATH="/app/.venv/bin:$PATH"
 
-CMD ["python", "-u", "./bot/bot.py"]
+CMD ["python", "-u", "/app/bot/bot.py"]
